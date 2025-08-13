@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemistry MCQs Test</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #010b0e, #016586);
+        margin: 0;
+        padding: 0;
+        color: rgb(50, 230, 34);
+    }
+    .one{
+        background-color: rgb(5, 5, 82);
+        margin: 7px;
+        padding: 2px;
+    }
+    .Two{
+        background-color: rgb(7, 57, 97);
+        margin: 15px;
+        padding: 3px;
+        text-align: center;
+    }
+    .Three{
+        background-color: rgb(90, 6, 158);
+        margin: 11px;
+        padding: 3px;
+        text-align: center;
+    }
+    .container {
+        width: 90%;
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: rgb(255, 0, 0);
+    }
+    .question {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        background: rgba(255,255,255,0.1);
+    }
+    label {
+        display: block;
+        margin: 5px 0;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    button {
+        background: #ff9800;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    button:hover {
+        background: #e68a00;
+    }
+    .correct {
+        background-color: rgba(76, 175, 80, 0.5) !important;
+    }
+    .wrong {
+        background-color: rgba(244, 67, 54, 0.5) !important;
+    }
+    #result {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+    .last{
+        background-color: #000000;
+        margin: 1px;
+        padding: 6px;
+        width: 100vw;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <div class="one">
+        This is the first chp MCQS.In this page over all important MCQS according to the board.After complete the ovell chapters then final test of full book MCQS that consists of Most Important MCQS that repeated in <strong>Bord Exams.</strong>
+    </div>
+    <div class="Two">Make sure this is help for you for the preparation of <strong>Board exam</strong>.
+    <div class="Three">Lets's start your Test</div>
+    </div>
+<div class="container">
+    <h1>Chemistry MCQs Chp 1 Test</h1>
+    <div id="quiz-container"></div>
+    <button onclick="checkAnswers()">Submit</button>
+    <button onclick="resetQuiz()">Restart</button>
+    <div id="result"></div>
+</div>
+<div class="last">Make Sure Your Result are Good!</div>
+
+<script>
+// Array of MCQs
+const mcqs = [
+    { q: "In  lime kiln, the reaction CaCO<sub>3(g)</sub> --> CaO <sub>(s)</sub> + CO<sub>2(g)</sub> goes to completion because :", options: ["of high temperature", "CaO is more stable than CaCo<sub>3</sub>", "CO<sub>2</sub> escapes continuously","CaO is not dissociated"], answer: 2 },
+    { q: "Reactions which hhave comparable amounts of reactants and products at equilibrium state have :", options: ["vrey small Kc value", "very large Kc vale", "moderate Kc value","none of the above"], answer: 2 },
+    { q: "At dynamic equilibrium :", options: ["the reactions stops to proceed", " the amounts of reactants and products are equall", "the speeds of the forward and reverse reactions are equal","the reaction can no longer be reserved"], answer: 2 },
+    { q: "A reverse reaction is one that :", options: ["proceeds from left to right ", "in which reactants react to from products", "slow down gradually","speeds up gradually"], answer: 3 },
+    { q: "Nitrogen and hydrogen were reacted together to make ammonia: N<sub>2</sub>+3H<sub>2</sub> <--> 2NH<sub>3</sub> &nbsp &nbsp Kc -->2.86mol<sub>-2</sub>dm<sub>6</sub>, What will be present in the equilibrium mixutre? :", options: ["NH<sub>3</sub> only", "N<sub>2</sub>, H<sub>2</sub> and NH<sub>3</sub>", "N<sub>2</sub> and H<sub>2</sub> only","H<sub>2</sub> only"], answer: 1 },
+    { q: "For a reaction between PCl<sub>3</sub> and Cl<sub>2</sub> to form PCl<sub>5</sub>, the units Kc are :", options: ["mol dm<sup>-3</sup>", "mol<sup>-1</sup> dm<sup>-3</sup>", "mol<sup>-1</sup> dm<sup>3</sup>","mol dm<sup>3</sup>"], answer: 2 },
+    { q: "The color of hydrogen iodine is    :", options: ["colourless", "black", "red","pink"], answer: 0 },
+    { q: "The % age of nitrogen and oxygen in our atmosphere is :", options: ["80%", "90%", "95%","99%"], answer: 3 },
+    { q: "Such reactions ehich continute in both directions are called :", options: ["Irreversible", "Reversible", "Non-reactive","Dynamic"], answer: 1 },
+    { q: "The units of molar concentration :", options: ["", "mol. dm<sup>-1</sup>", "mol. dm","mol.  dm<sup>-3</sup>"], answer: 0 },
+    { q: " 'Kc'is always equal to:", options: ["k<sub>f</sub>/K<sub>r</sub>", "R<sub>f</sub>/R<sub>r</sub>", "k<sub>r</sub>/k<sub>f</sub>","R<sub>r</sub>/R<sub>f</sub>"], answer: 0 },
+    {  q: "For the folloeing reaction, equilibrium mixture will contain: N<sub>2</sub>O<sub>4(g)</sub> <--> 2NO<sub>2(g)</sub> &nbsp &nbsp K<sub>c</sub> --> 0.211",options: ["only N<sub>2</sub>O<sub>4</sub>","only NO<sub>2</sub>","NO<sub>2</sub> and N<sub>2</sub>O<sub>4</sub> in reasonable amount","NO<sub>2</sub> in large amount"], answer: 2},
+    { q:"If Q<sub>c</sub> < K<sub>c</sub>, the reaction goes in :", options: ["forward","reverse","at wquilibrium state","none of the above"], answer: 0},
+    { q:"THe unit of equilibrium constant for the following reaction is : N<sub>2(g)</sub> + 3H<sub>2(g)</sub> <--> 2NH<sub>3(g)</sub>", options:["moldm<sup>-3</sup>","mol<sup>-2</sup>dm<sup>6</sup>","moldm<sup>-6</sup>","mol<sup>-1</sup>dm<sup>3</sup>"], answer: 1},
+    { q:"In the beginning rate of reverse reaction is :", options:["Moderate","Negligible","Slow","Very fast"],answer: 1},
+    { q:"THe new subastance formed in a chemical reaction is :", options:["Reactant","Product","Forward","Reverse"],answer: 1},
+    { q:"K<sub>c</sub> depends upon :",options:["Temperautre","Pressure","Volume","Atmosphere"],answer: 0}
+    // Keep adding until you reach 100+ MCQs...
+];
+
+// Generate MCQs in HTML
+function loadQuiz() {
+    const quizContainer = document.getElementById("quiz-container");
+    quizContainer.innerHTML = "";
+    mcqs.forEach((mcq, index) => {
+        let html = `<div class="question" data-answer="${mcq.answer}">
+                        <p>${index + 1}. ${mcq.q}</p>`;
+        mcq.options.forEach((opt, i) => {
+            html += `<label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>`;
+        });
+        html += `</div>`;
+        quizContainer.innerHTML += html;
+    });
+}
+
+// Check answers & highlight
+function checkAnswers() {
+    let questions = document.querySelectorAll('.question');
+    let score = 0;
+
+    questions.forEach(q => {
+        let correctIndex = parseInt(q.dataset.answer);
+        let selected = q.querySelector('input[type="radio"]:checked');
+
+        let options = q.querySelectorAll('label');
+
+        options.forEach((label, idx) => {
+            label.classList.remove('correct', 'wrong');
+            if (idx === correctIndex) {
+                label.classList.add('correct'); // Always highlight correct answer
+            }
+        });
+
+        if (selected) {
+            if (parseInt(selected.value) === correctIndex) {
+                score++;
+            } else {
+                // Highlight wrong selection
+                options[selected.value].classList.add('wrong');
+            }
+        }
+    });
+
+    let percentage = (score / questions.length) * 100;
+    document.getElementById('result').innerHTML = 
+        `You got ${score} out of ${questions.length} correct (${percentage.toFixed(2)}%)`;
+}
+
+function resetQuiz() {
+    document.getElementById('result').innerHTML = "";
+    loadQuiz();
+}
+
+loadQuiz();
+</script>
+
+</body>
+</html>
